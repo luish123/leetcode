@@ -36,11 +36,43 @@ class Solution {
      */
     function isSubsequence($s, $t) {
 
+
+        $s  =str_split($s);
+        foreach ($s as $key=>$item){
+            $index = strpos($t,$item);
+            if($index===false) return false;
+            $t = substr($t,$index+1);
+        }
+        return true;
+    }
+
+    /**
+     * 更优解
+     * User: luishuang
+     * @param $s
+     * @param $t
+     * @return bool
+     */
+    function isSubsequence2($s, $t) {
+        $n = strlen($s);
+        $m = strlen($t);
+        $i = 0;
+        $j = 0;
+        while ($i < $n && $j < $m) {
+            if ($s[$i] == $t[$j]) {
+                $i++;
+                $j++;
+            } else {
+                $j++;
+            }
+        }
+        return $i == $n;
+
     }
 }
 
 
-$arg1 = 'abc';
+$arg1 = 'abcd';
 $arg2 = 'ahbgdc';
 
 $s = new Solution();

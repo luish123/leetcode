@@ -35,65 +35,8 @@
 //$left = array_slice($a1,2,1);
 
 
-$arr = [1,2,2,2,4,4,5];
+
+$str = 'abcabc';
+var_dump(strpos($str,'b',2));
 
 
-/**
- * 返回第一个大于等于 $target的index
- * @param $arr
- * @param $target
- * @return int
- */
-function low_bound($arr,$target){
-    $left = 0;
-    $right = count($arr)-1;
-    while ($left<$right){
-        $mid = intval($left+($right-$left)/2);
-        if($target>$arr[$mid]){
-            //target在左边，left从mid+1开始算 左区间是闭合的
-            $left = $mid +1;
-        }else{
-            $right = $mid;
-        }
-    }
-    return $left;
-}
-
-/**
- * 返回第一个大于 $target的index
- * @param $arr
- * @param $target
- * @return int
- */
-function up_bound($arr,$target){
-    var_dump('up_bound');
-    $left = 0;
-    $right = count($arr)-1;
-    while ($left<$right){
-        $mid = intval($left+($right-$left)/2);
-        if($target>=$arr[$mid]){
-            // 大于或者等于都不满足情况，
-            $left = $mid +1;
-        }else{
-            $right = $mid;
-        }
-    }
-    return $left;
-}
-function binarySearch($arr,$target){
-    $left = 0;
-    $right = count($arr)-1;
-    while ($left<$right){
-        $mid = intval($left+($right-$left)/2);
-        if($target==$arr[$mid])  return $mid;
-        if($target > $arr[$mid]){
-            $left = $mid +1;
-        }else{
-            //$target < $arr[$mid]
-            $right = $mid;
-        }
-    }
-    return $left; //找不到则 第一个大于target的index
-}
-$arr = [2,5,6];
-var_dump(binarySearch($arr,5));
